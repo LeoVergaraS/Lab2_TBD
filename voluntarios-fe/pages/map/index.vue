@@ -1,6 +1,15 @@
 <template>
     <div class="map">
       <h1>Ejemplo Mapas</h1>
+      <v-select
+        v-model="id_emergencia"
+        :items="emergencias"
+        item-text="nombre"
+        item-value="id"
+        label="Emergencia"
+        required
+      >
+      </v-select>
       <div>{{point}} 
         <input type="text" v-model="name" placeholder="nombre" />
         <button type="button" @click="createPoint">Crear</button>
@@ -31,7 +40,9 @@
         name:'',
         points:[], //colección de puntos cargados de la BD
         message:'', 
-        mymap:null //objeto de mapa(DIV)
+        mymap:null, //objeto de mapa(DIV)
+        emergencias: [],
+        id_emergencia: -1
       }
     },
     computed:{
@@ -46,6 +57,16 @@
       }
     },
     methods:{
+      async getEmergencies(){
+        const url = "http://localhost:8090/emergencies";
+        await axios.get(url)
+          .then((response) => {
+            this.emergencias = response.data.sort((a, b) => a.id - b.id)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      },
       clearMarkers:function(){ //eliminar marcadores
       
         this.points.forEach(p=>{
@@ -81,6 +102,7 @@
       }
     },
     mounted:function(){
+      this.getEmergencies()
       let _this = this;
       //Se asigna el mapa al elemento con id="mapid"
        this.mymap = L.map('mapid').setView([-33.456, -70.648], 7);
