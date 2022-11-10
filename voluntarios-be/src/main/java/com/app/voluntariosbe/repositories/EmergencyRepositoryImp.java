@@ -30,7 +30,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
 
     @Override
     public List<Emergency> getAllEmergency() {
-        String sql = "SELECT * FROM emergencia";
+        String sql = "SELECT id, nombre,descrip,finicio,ffin,id_institucion, st_x(st_astext( geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM emergencia;";
         Connection conn = sql2o.open();
         try (conn) {
             return conn.createQuery(sql).executeAndFetch(Emergency.class);
@@ -59,12 +59,15 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Override
     public Emergency createEmergency(Emergency t) {
         String sql = "INSERT INTO emergencia (id, nombre, descrip, finicio, " +
-                "ffin, id_institucion, location) " +
-                "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, :geom)";
+                "ffin, id_institucion, geom) " +
+                "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, ST_GeomFromText(POINT(\":longitud :latitud\"), 4326))";
+                //String point = "POINT("+t.getLongitud()+" "+t.getLatitud()+")";
+
         Connection conn = sql2o.open();
         try (conn) {
             int id = (int) conn.createQuery(sql,true)
                     .bind(t)
+                    //.addParameter("geom", point)
                     .executeUpdate()
                     .getKey();
             t.setId(id);
@@ -80,12 +83,14 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Override
     public Emergency updateEmergency(Emergency t) {
         String sql = "UPDATE emergencia SET nombre = :nombre, descrip = :descrip, " +
-                "finicio = :finicio, ffin = :ffin, id_institucion = :id_institucion , geom = :geom" +
+                "finicio = :finicio, ffin = :ffin, id_institucion = :id_institucion , ST_GeomFromText(POINT(\":longitud :latitud\"), 4326))" +
                 "WHERE id = :id";
+                //String point = "POINT("+t.getLongitud()+" "+t.getLatitud()+")";
         Connection conn = sql2o.open();
         try (conn) {
             conn.createQuery(sql)
                     .bind(t)
+                    //.addParameter("geom", point)
                     .executeUpdate();
             return t;
         }catch(Exception e){
