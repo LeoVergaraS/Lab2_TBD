@@ -1,20 +1,21 @@
 package com.app.voluntariosbe.models;
 
 import java.util.Date;
-import org.postgis.PGgeometry;
 
 public class Volunteer {
     private Integer id;
     private String nombre;
     private Date fnacimiento;
-    private PGgeometry geom;
+    private double longitud;
+    private double latitud;
 
     //Constructor
-    public Volunteer(Integer id, String nombre, Date fnacimiento, PGgeometry geom) {
+    public Volunteer(Integer id, String nombre, Date fnacimiento, double longitud, double latitud) {
         this.id = id;
         this.nombre = nombre;
         this.fnacimiento = fnacimiento;
-        this.geom = geom;
+        this.longitud = longitud;
+        this.latitud = latitud;
     }
 
     //Getters
@@ -30,8 +31,12 @@ public class Volunteer {
         return fnacimiento;
     }
 
-    public PGgeometry getgeom() {
-        return geom;
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
     }
     //Setters
     public void setId(Integer id) {
@@ -46,7 +51,11 @@ public class Volunteer {
         this.fnacimiento = fnacimiento;
     }
 
-    public void setgeom(PGgeometry geom) {
-        this.geom = geom;
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 }

@@ -2,7 +2,6 @@ package com.app.voluntariosbe.models;
 
 import java.util.Date;
 
-import org.postgis.PGgeometry;
 public class Emergency {
     private Integer id;
     private String nombre;
@@ -10,17 +9,19 @@ public class Emergency {
     private Date finicio;
     private Date ffin;
     private Integer id_institucion;
-    private PGgeometry geom;
+    private double longitud;
+    private double latitud;
 
     //Constructor
-    public Emergency(Integer id, String nombre, String descrip, Date finicio, Date ffin, Integer id_institucion, PGgeometry geom) {
+    public Emergency(Integer id, String nombre, String descrip, Date finicio, Date ffin, Integer id_institucion, double longitud, double latitud) {
         this.id = id;
         this.nombre = nombre;
         this.descrip = descrip;
         this.finicio = finicio;
         this.ffin = ffin;
         this.id_institucion = id_institucion;
-        this.geom = geom;
+        this.longitud = longitud;
+        this.latitud = latitud;
     }
 
     //Getters
@@ -48,8 +49,12 @@ public class Emergency {
         return id_institucion;
     }
 
-    public PGgeometry getgeom() {
-        return geom;
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
     }
     //Setters
     public void setId(Integer id) {
@@ -76,7 +81,11 @@ public class Emergency {
         this.id_institucion = id_institucion;
     }
 
-    public void setgeom(PGgeometry geom) {
-        this.geom = geom;
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
     }
 }
