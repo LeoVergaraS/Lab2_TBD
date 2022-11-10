@@ -23,6 +23,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
+	//postgis
+	//implementation 'org.postgis:postgis-jdbc:2.5.1'
+	//compile group: 'net.postgis', name: 'postgis-jdbc', version: '2.5.0'
+	compileOnly 'net.postgis:postgis-jdbc:2.5.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly group: 'org.sql2o', name: 'sql2o', version: '1.6.0'
 	compileOnly 'org.postgresql:postgresql:42.2.5'

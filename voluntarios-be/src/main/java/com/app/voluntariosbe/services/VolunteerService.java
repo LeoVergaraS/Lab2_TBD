@@ -1,8 +1,6 @@
 package com.app.voluntariosbe.services;
 
-import com.app.voluntariosbe.models.Task;
 import com.app.voluntariosbe.models.Volunteer;
-import com.app.voluntariosbe.repositories.TaskRepository;
 import com.app.voluntariosbe.repositories.VolunteerRepository;
 
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +43,11 @@ public class VolunteerService {
     @GetMapping("/volunteers/{id}")
     public Volunteer getVolunteerById(@PathVariable int id){
         return volunteerRepository.getVolunteerById(id);
+    }
+
+    @GetMapping("/volunteers/emergency/{id}")
+    public List<Volunteer> getVolunteerByEmergency(@PathVariable int id){
+        return volunteerRepository.getVolunteerByEmergency(id);
     }
 
 }

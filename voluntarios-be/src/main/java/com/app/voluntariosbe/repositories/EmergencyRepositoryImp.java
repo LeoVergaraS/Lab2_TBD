@@ -7,7 +7,6 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 public class EmergencyRepositoryImp implements EmergencyRepository{
@@ -60,8 +59,8 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Override
     public Emergency createEmergency(Emergency t) {
         String sql = "INSERT INTO emergencia (id, nombre, descrip, finicio, " +
-                "ffin, id_institucion) " +
-                "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion)";
+                "ffin, id_institucion, location) " +
+                "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, :geom)";
         Connection conn = sql2o.open();
         try (conn) {
             int id = (int) conn.createQuery(sql,true)
@@ -81,7 +80,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Override
     public Emergency updateEmergency(Emergency t) {
         String sql = "UPDATE emergencia SET nombre = :nombre, descrip = :descrip, " +
-                "finicio = :finicio, ffin = :ffin, id_institucion = :id_institucion " +
+                "finicio = :finicio, ffin = :ffin, id_institucion = :id_institucion , geom = :geom" +
                 "WHERE id = :id";
         Connection conn = sql2o.open();
         try (conn) {

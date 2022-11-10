@@ -7,7 +7,6 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 import java.util.List;
-import java.util.Objects;
 
 @Repository
 public class Eme_SkillRepositoryImp implements Eme_SkillRepository{

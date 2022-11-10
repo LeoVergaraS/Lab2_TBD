@@ -294,7 +294,7 @@ export default {
     },
 
     async createRequirementes(){
-      const url = "http://localhost:8080/task_skills";
+      const url = "http://localhost:8090/task_skills";
       console.log(task_skill)
       await axios
         .post(url,task_skill)
@@ -308,7 +308,7 @@ export default {
 
     /* Obtiene las tareas */
     getTask() {
-      const url = "http://localhost:8080/tasks";
+      const url = "http://localhost:8090/tasks";
       axios
         .get(url)
         .then((response) => {
@@ -321,7 +321,7 @@ export default {
 
     getRequirements() {
       const url = 
-        "http://localhost:8080/skills/emergencies/" +
+        "http://localhost:8090/skills/emergencies/" +
         this.editedItem.id_emergencia;
       axios
         .get(url)
@@ -334,7 +334,7 @@ export default {
     },
     /* Obtiene los estados de las tareas */
     getStatusTask() {
-      const url = "http://localhost:8080/status_tasks";
+      const url = "http://localhost:8090/status_tasks";
       axios
         .get(url)
         .then((response) => {
@@ -347,7 +347,7 @@ export default {
 
     /* Se obtienen las emergencias */
     async getEmergencies() {
-      const url = "http://localhost:8080/emergencies";
+      const url = "http://localhost:8090/emergencies";
       await axios
         .get(url)
         .then((response) => {
@@ -383,7 +383,7 @@ export default {
 
     /* Hace la conexión del delete con axios */
     async deleteTask(et) {
-      const url = "http://localhost:8080/tasks/" + String(et.id);
+      const url = "http://localhost:8090/tasks/" + String(et.id);
       await axios
         .delete(url)
         .then((response) => {
@@ -420,7 +420,7 @@ export default {
 
     /*conexión con axios para crear la tarea */
     async createTask(et) {
-      const url = "http://localhost:8080/tasks";
+      const url = "http://localhost:8090/tasks";
       await axios
         .post(url, et)
         .then((response) => {
@@ -433,7 +433,7 @@ export default {
 
     /* conexión con axios para editar la tarea */
     async updateTask(et) {
-      const url = "http://localhost:8080/tasks";
+      const url = "http://localhost:8090/tasks";
       await axios
         .put(url, et)
         .then((response) => {
