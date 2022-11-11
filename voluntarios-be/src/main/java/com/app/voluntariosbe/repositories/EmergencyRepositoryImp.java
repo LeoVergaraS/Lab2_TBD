@@ -30,7 +30,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
 
     @Override
     public List<Emergency> getAllEmergency() {
-        String sql = "SELECT id, nombre,descrip,finicio,ffin,id_institucion, st_x(st_astext( geom)) AS longitud, st_y(st_astext(geom)) AS latitud, estado FROM emergencia;";
+        String sql = "SELECT id, nombre,descrip,finicio,ffin,id_institucion, st_x(st_astext( geom)) AS longitud, st_y(st_astext(geom)) AS latitud, estado FROM emergencia ORDER BY estado ASC, nombre ASC;";
         Connection conn = sql2o.open();
         try (conn) {
             return conn.createQuery(sql).executeAndFetch(Emergency.class);

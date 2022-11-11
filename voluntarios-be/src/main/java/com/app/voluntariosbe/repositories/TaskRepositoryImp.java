@@ -1,12 +1,13 @@
 package com.app.voluntariosbe.repositories;
 
-import com.app.voluntariosbe.models.Task;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
-import java.util.List;
+import com.app.voluntariosbe.models.Task;
 
 @Repository
 public class TaskRepositoryImp implements TaskRepository{
@@ -116,7 +117,7 @@ public class TaskRepositoryImp implements TaskRepository{
     @Override
     // task from emergency
     public List<Task> getTaskByEmergency(int id) {
-        String sql = "SELECT  ta.* FROM tarea ta, emergencia em WHERE em.id= :id and ta.id_emergencia = em.id";
+        String sql = "SELECT  ta.* FROM tarea ta, emergencia em WHERE em.id= :id and ta.id_emergencia = em.id ORDER BY id_estado ASC, nombre ASC;";
         Connection conn = sql2o.open();
         try (conn) {
             return conn.createQuery(sql).addParameter("id", id).executeAndFetch(Task.class);

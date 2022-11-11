@@ -1,6 +1,8 @@
 package com.app.voluntariosbe.repositories;
 
 import com.app.voluntariosbe.models.Volunteer;
+import com.app.voluntariosbe.models.Volunteer_Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -131,11 +133,11 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
     }
     @Override
     // volunteers from task id
-    public List<Volunteer> getVolunteerByTask(int id) {
-        String sql = "select distinct vo.id, vo.nombre, vo.fnacimiento, st_x(st_astext(vo.geom)) AS longitud, st_y(st_astext(vo.geom)) AS latitud from tarea ta, ranking ra, voluntario vo where ta.id=:id and ra.id_tarea=ta.id and ra.id_voluntario=vo.id";
+    public List<Volunteer_Query> getVolunteerByTask(int id) {
+        String sql = "SELECT DISTINCT vo.id, vo.nombre, ra.flg_participa FROM tarea ta, ranking ra, voluntario vo WHERE ta.id= :id AND ra.id_tarea=ta.id AND ra.id_voluntario=vo.id ORDER BY flg_participa ASC, nombre ASC;";
         Connection conn = sql2o.open();
         try (conn) {
-            return conn.createQuery(sql).addParameter("id", id).executeAndFetch(Volunteer.class);
+            return conn.createQuery(sql).addParameter("id", id).executeAndFetch(Volunteer_Query.class);
         }catch(Exception e){
             System.out.println(e);
             return null;
