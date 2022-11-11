@@ -11,11 +11,11 @@ Se debe descargar el proyecto en su computador desde el repositorio de github co
 Previo a la ejecución del proyecto se debe tener la base de datos creada efectivamente a traves de pgAdmin4 con el puerto 5432 con un database llamada "voluntarios".
 
 Luego se debe agregar la extensión postgis 3, se puede hacer en pgAdmin4 de la siguiente manera:
-![alt text](https://ibb.co/fYYTr63)
-![alt text](https://ibb.co/sbqXQVr)
+![alt text](https://github.com/LeoVergaraS/Lab2_TBD/blob/main/add_ext1.png?raw=true)
+![alt text](https://github.com/LeoVergaraS/Lab2_TBD/blob/main/add_ext2.png?raw=true)
 
 Finalmente se debe restaurar la base de datos con un backup de dump data.
-![alt text](https://ibb.co/njdtgcK)
+![alt text](https://github.com/LeoVergaraS/Lab2_TBD/blob/main/restore.png?raw=true)
 
 Ejecución del proyecto
 En Intellij se debe abrir la carpeta voluntarios-be y ejecutar el proyecto dando click en el boton verde de "play" de la parte superior derecha. Otra forma es dar click derecho en el archivo "VoluntariosBEApplication" y seleccionar la opcion run.
