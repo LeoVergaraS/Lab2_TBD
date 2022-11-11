@@ -48,4 +48,8 @@ public class Status_TaskService {
         return status_taskRepository.getStatus_TaskById(id);
     }
 
+    @GetMapping("/status_tasks/emergency/{id}")
+    public Status_Task getEmergencyState(@PathVariable int id){
+        return status_taskRepository.getEmergencyState(id);
+    }
 }
