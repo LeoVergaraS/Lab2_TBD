@@ -8,6 +8,9 @@
                         <template v-slot:[`item.action`]="{ item }">
                             <v-icon small class="mr-2" @click="getTasks(item.id)"> mdi-arrow-right </v-icon>
                         </template>
+                        <template v-slot:[`item.estado`]="{ item }">
+                            <div v-text="getNombre(item.estado)"></div>
+                        </template>
                     </v-data-table>
                 </v-card>
             </v-col>
@@ -19,7 +22,7 @@
                             <v-icon small class="mr-2" @click="getVolunteers(item.id)"> mdi-arrow-right </v-icon>
                         </template>
                         <template v-slot:[`item.id_estado`]="{ item }">
-                            <div v-text="getNombre(item.id_estado, 0)"></div>
+                            <div v-text="getNombre(item.id_estado)"></div>
                         </template>
                     </v-data-table>
                 </v-card>
@@ -125,10 +128,8 @@ export default {
                     console.log(error);
                 });
         },
-        getNombre(id, n) {
-            if (n == 0) {
-                return this.estadosTareas[id].descrip;
-            }
+        getNombre(id) {
+            return this.estadosTareas[id].descrip;
         },
     }
 
