@@ -103,7 +103,7 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-earth',
           title: 'Mapa',
           to: '/map'
         },
@@ -111,6 +111,11 @@ export default {
           icon: 'mdi-file-document-check',
           title: 'Tareas',
           to: '/task'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Interactivo',
+          to: '/interactive'
         }
       ],
       miniVariant: false,
