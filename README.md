@@ -8,7 +8,7 @@ Para ejecutar el proyecto se debe contar con los siguientes prerequisitos:
 Descarga del proyecto
 Se debe descargar el proyecto en su computador desde el repositorio de github con el siguiente link: https://github.com/LeoVergaraS/Lab2_TBD.git
 
-Previo a la ejecución del proyecto se debe tener la base de datos creada efectivamente a traves de pgAdmin4 con el puerto 5432 con un database llamada "voluntarios".
+Previo a la ejecución del proyecto se debe tener la base de datos creada efectivamente a traves de pgAdmin4 con el puerto 5432 con un database llamada "voluntarios", esto se puede hacer en la consola de psql con el código: CREATE DATABASE voluntarios;
 
 Luego se debe agregar la extensión postgis 3, se puede hacer en pgAdmin4 de la siguiente manera:
 ![alt text](https://github.com/LeoVergaraS/Lab2_TBD/blob/main/add_ext1.png?raw=true)
