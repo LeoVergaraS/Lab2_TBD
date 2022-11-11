@@ -287,9 +287,9 @@ export default {
 
     uploadRequirements(){
       for(let i=0;i<this.nuevosRequerimientos.length;i++){
-        task_skill.id_emehab = this.nuevosRequerimientos[i]
-        task_skill.id_tarea = this.editedIndex
-        createRequirementes()
+        this.task_skill.id_emehab = this.nuevosRequerimientos[i]
+        this.task_skill.id_tarea = this.editedIndex
+        this.createRequirementes()
       }
     },
 

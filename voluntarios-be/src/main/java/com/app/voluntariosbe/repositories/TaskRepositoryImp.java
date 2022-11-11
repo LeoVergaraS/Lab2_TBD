@@ -101,7 +101,9 @@ public class TaskRepositoryImp implements TaskRepository{
 
     @Override
     public void deleteTaskById(int id) {
-        String sql = "DELETE FROM tarea WHERE id = :id";
+        String sql = "DELETE FROM ranking ra WHERE ra.id_tarea = :id; " +
+                    "DELETE FROM tarea_habilidad th WHERE th.id_tarea = :id; " +
+                    "DELETE FROM tarea ta WHERE ta.id = :id;";
         Connection conn = sql2o.open();
         try (conn) {
             conn.createQuery(sql)
@@ -117,7 +119,9 @@ public class TaskRepositoryImp implements TaskRepository{
     @Override
     // task from emergency
     public List<Task> getTaskByEmergency(int id) {
-        String sql = "SELECT  ta.* FROM tarea ta, emergencia em WHERE em.id= :id and ta.id_emergencia = em.id ORDER BY id_estado ASC, nombre ASC;";
+        String sql = "SELECT  ta.* FROM tarea ta, emergencia em " + 
+                    "WHERE em.id= :id and ta.id_emergencia = em.id " +
+                    "ORDER BY id_estado ASC, nombre ASC;";
         Connection conn = sql2o.open();
         try (conn) {
             return conn.createQuery(sql).addParameter("id", id).executeAndFetch(Task.class);
