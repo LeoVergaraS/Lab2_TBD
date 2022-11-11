@@ -10,13 +10,13 @@ public class Volunteer {
     private double latitud;
 
     //Constructor
-    public Volunteer(Integer id, String nombre, Date fnacimiento, double longitud, double latitud) {
+/*     public Volunteer(Integer id, String nombre, Date fnacimiento, double longitud, double latitud) {
         this.id = id;
         this.nombre = nombre;
         this.fnacimiento = fnacimiento;
         this.longitud = longitud;
         this.latitud = latitud;
-    }
+    } */
 
     //Getters
     public Integer getId() {

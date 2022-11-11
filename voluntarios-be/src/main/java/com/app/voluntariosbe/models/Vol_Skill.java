@@ -6,11 +6,11 @@ public class Vol_Skill {
     private Integer id_habilidad;
 
     //Constructor
-    public Vol_Skill(Integer id, Integer id_voluntario, Integer id_habilidad) {
+/*     public Vol_Skill(Integer id, Integer id_voluntario, Integer id_habilidad) {
         this.id = id;
         this.id_voluntario = id_voluntario;
         this.id_habilidad = id_habilidad;
-    }
+    } */
 
     //Getters
     public Integer getId() {

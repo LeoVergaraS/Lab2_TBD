@@ -9,14 +9,14 @@ public class Ranking {
     private Integer flg_participa;
 
     //Constructor
-    public Ranking(Integer id, Integer id_voluntario, Integer id_tarea, Integer puntaje, Integer flg_invitado, Integer flg_participa) {
+ /*    public Ranking(Integer id, Integer id_voluntario, Integer id_tarea, Integer puntaje, Integer flg_invitado, Integer flg_participa) {
         this.id = id;
         this.id_voluntario = id_voluntario;
         this.id_tarea = id_tarea;
         this.puntaje = puntaje;
         this.flg_invitado = flg_invitado;
         this.flg_participa = flg_participa;
-    }
+    } */
 
     //Getters
     public Integer getId() {

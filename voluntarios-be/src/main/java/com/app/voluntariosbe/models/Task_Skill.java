@@ -6,11 +6,11 @@ public class Task_Skill {
     private Integer id_tarea;
 
     //Constructor
-    public Task_Skill(Integer id, Integer id_emehab, Integer id_tarea) {
+/*     public Task_Skill(Integer id, Integer id_emehab, Integer id_tarea) {
         this.id = id;
         this.id_emehab = id_emehab;
         this.id_tarea = id_tarea;
-    }
+    } */
 
     //Getters
     public Integer getId() {

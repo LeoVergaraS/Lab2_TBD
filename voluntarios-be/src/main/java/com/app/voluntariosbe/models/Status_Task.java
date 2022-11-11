@@ -5,10 +5,10 @@ public class Status_Task {
     private String descrip;
 
     //Constructor
-    public Status_Task(Integer id, String descrip) {
+ /*    public Status_Task(Integer id, String descrip) {
         this.id = id;
         this.descrip = descrip;
-    }
+    } */
 
     //Getters
     public Integer getId() {

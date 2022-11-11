@@ -14,7 +14,7 @@ public class Emergency {
     private Integer estado;
 
     //Constructor
-    public Emergency(Integer id, String nombre, String descrip, Date finicio, Date ffin, Integer id_institucion, double longitud, double latitud, Integer estado) {
+    /* public Emergency(Integer id, String nombre, String descrip, Date finicio, Date ffin, Integer id_institucion, double longitud, double latitud, Integer estado) {
         this.id = id;
         this.nombre = nombre;
         this.descrip = descrip;
@@ -24,7 +24,7 @@ public class Emergency {
         this.longitud = longitud;
         this.latitud = latitud;
         this.estado = estado;
-    }
+    } */
 
     //Getters
     public Integer getId() {

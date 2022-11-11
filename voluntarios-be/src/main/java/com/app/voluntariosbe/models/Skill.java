@@ -5,10 +5,10 @@ public class Skill {
     private String descrip;
 
     //Constructor
-    public Skill(Integer id, String descrip) {
+    /*public Skill(Integer id, String descrip) {
         this.id = id;
         this.descrip = descrip;
-    }
+    }*/
 
     //Getters
     public Integer getId() {

@@ -13,7 +13,7 @@ public class Task {
     private Date ffin;
     private Integer id_estado;
 
-    public Task(Integer id, String nombre, String descrip, Integer cant_vol_requeridos, Integer cant_vol_inscritos,
+   /*  public Task(Integer id, String nombre, String descrip, Integer cant_vol_requeridos, Integer cant_vol_inscritos,
                 Integer id_emergencia, Date finicio, Date ffin, Integer id_estado) {
         this.id = id;
         this.nombre = nombre;
@@ -24,7 +24,7 @@ public class Task {
         this.finicio = finicio;
         this.ffin = ffin;
         this.id_estado = id_estado;
-    }
+    } */
 
     public Integer getId() {
         return id;

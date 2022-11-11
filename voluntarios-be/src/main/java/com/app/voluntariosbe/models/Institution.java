@@ -6,11 +6,11 @@ public class Institution {
     private String descrip;
 
     //Constructor
-    public Institution(Integer id, String nombre, String descrip) {
+  /*   public Institution(Integer id, String nombre, String descrip) {
         this.id = id;
         this.nombre = nombre;
         this.descrip = descrip;
-    }
+    } */
 
     //Getters
     public Integer getId() {

@@ -6,11 +6,11 @@ public class Volunteer_Query {
     private Integer flg_participa;
 
     //Constructor
-    public Volunteer_Query(Integer id, String nombre, Integer flg_participa) {
+/*     public Volunteer_Query(Integer id, String nombre, Integer flg_participa) {
         this.id = id;
         this.nombre = nombre;
         this.flg_participa = flg_participa;
-    }
+    } */
 
     //Getters
     public Integer getId() {
