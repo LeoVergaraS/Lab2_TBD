@@ -14,7 +14,7 @@ Luego se debe agregar la extensión postgis 3, se puede hacer en pgAdmin4 de la 
 ![alt text](https://github.com/LeoVergaraS/Lab2_TBD/blob/main/add_ext1.png?raw=true)
 ![alt text](https://github.com/LeoVergaraS/Lab2_TBD/blob/main/add_ext2.png?raw=true)
 
-Finalmente se debe restaurar la base de datos con un backup de dump data.
+Finalmente se debe restaurar la base de datos con un backup de dump data.<br />
 ![alt text](https://github.com/LeoVergaraS/Lab2_TBD/blob/main/restore.png?raw=true)
 
 Ejecución del proyecto
