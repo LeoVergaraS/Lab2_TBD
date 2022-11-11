@@ -30,7 +30,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
 
     @Override
     public List<Emergency> getAllEmergency() {
-        String sql = "SELECT id, nombre,descrip,finicio,ffin,id_institucion, st_x(st_astext( geom)) AS longitud, st_y(st_astext(geom)) AS latitud FROM emergencia;";
+        String sql = "SELECT id, nombre,descrip,finicio,ffin,id_institucion, st_x(st_astext( geom)) AS longitud, st_y(st_astext(geom)) AS latitud, estado FROM emergencia;";
         Connection conn = sql2o.open();
         try (conn) {
             return conn.createQuery(sql).executeAndFetch(Emergency.class);
@@ -60,7 +60,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     public Emergency createEmergency(Emergency t) {
         String sql = "INSERT INTO emergencia (id, nombre, descrip, finicio, " +
                 "ffin, id_institucion, geom) " +
-                "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, ST_GeomFromText(POINT(\":longitud :latitud\"), 4326))";
+                "VALUES (:id, :nombre, :descrip, :finicio, :ffin, :id_institucion, ST_GeomFromText(POINT(\":longitud :latitud\"), 4326)), estado = :estado";
                 //String point = "POINT("+t.getLongitud()+" "+t.getLatitud()+")";
 
         Connection conn = sql2o.open();
@@ -83,7 +83,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Override
     public Emergency updateEmergency(Emergency t) {
         String sql = "UPDATE emergencia SET nombre = :nombre, descrip = :descrip, " +
-                "finicio = :finicio, ffin = :ffin, id_institucion = :id_institucion , ST_GeomFromText(POINT(\":longitud :latitud\"), 4326))" +
+                "finicio = :finicio, ffin = :ffin, id_institucion = :id_institucion , ST_GeomFromText(POINT(\":longitud :latitud\"), 4326)), estado = :estado" +
                 "WHERE id = :id";
                 //String point = "POINT("+t.getLongitud()+" "+t.getLatitud()+")";
         Connection conn = sql2o.open();
@@ -115,5 +115,5 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
             conn.close();
         }
     }
-
+    
 }

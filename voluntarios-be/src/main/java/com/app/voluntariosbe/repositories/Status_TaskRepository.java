@@ -12,4 +12,5 @@ public interface Status_TaskRepository {
     public Status_Task createStatus_Task(Status_Task s);
     public Status_Task updateStatus_Task(Status_Task s);
     public void deleteStatus_TaskById(int id);
+    public Status_Task getEmergencyState(int id);
 }
