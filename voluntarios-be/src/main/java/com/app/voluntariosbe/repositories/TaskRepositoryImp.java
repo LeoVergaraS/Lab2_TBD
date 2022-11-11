@@ -112,5 +112,20 @@ public class TaskRepositoryImp implements TaskRepository{
             conn.close();
         }
     }
+    
+    @Override
+    // task from emergency
+    public List<Task> getTaskByEmergency(int id) {
+        String sql = "SELECT  ta.* FROM tarea ta, emergencia em WHERE em.id= :id and ta.id_emergencia = em.id";
+        Connection conn = sql2o.open();
+        try (conn) {
+            return conn.createQuery(sql).addParameter("id", id).executeAndFetch(Task.class);
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
+        }finally{
+            conn.close();
+        }
+    }
  
 }

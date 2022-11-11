@@ -49,5 +49,8 @@ public class VolunteerService {
     public List<Volunteer> getVolunteerByEmergency(@PathVariable int id){
         return volunteerRepository.getVolunteerByEmergency(id);
     }
-
+    @GetMapping("/volunteers/task/{id}")
+    public List<Volunteer> getVolunteerByTask(@PathVariable int id){
+        return volunteerRepository.getVolunteerByTask(id);
+    }
 }

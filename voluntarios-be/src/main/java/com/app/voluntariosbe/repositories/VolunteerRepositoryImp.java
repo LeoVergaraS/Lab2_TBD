@@ -129,5 +129,19 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
             conn.close();
         }
     }
-
+    @Override
+    // volunteers from task id
+    public List<Volunteer> getVolunteerByTask(int id) {
+        String sql = "select distinct vo.id, vo.nombre, vo.fnacimiento, st_x(st_astext(vo.geom)) AS longitud, st_y(st_astext(vo.geom)) AS latitud from tarea ta, ranking ra, voluntario vo where ta.id=:id and ra.id_tarea=ta.id and ra.id_voluntario=vo.id";
+        Connection conn = sql2o.open();
+        try (conn) {
+            return conn.createQuery(sql).addParameter("id", id).executeAndFetch(Volunteer.class);
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
+        }finally{
+            conn.close();
+        }
+    }
+    
 }

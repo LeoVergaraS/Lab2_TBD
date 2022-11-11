@@ -45,5 +45,9 @@ public class TaskService {
     public Task getTaskById(@PathVariable int id){
         return taskRepository.getTaskById(id);
     }
-
+    
+    @GetMapping("/tasks/emergency/{id}")
+    public List<Task> getTaskByEmergency(@PathVariable int id){
+        return taskRepository.getTaskByEmergency(id);
+    }
 }

@@ -11,4 +11,5 @@ public interface VolunteerRepository {
     public Volunteer updateVolunteer(Volunteer v);
     public void deleteVolunteerById(int id);
     public List<Volunteer> getVolunteerByEmergency(int id);
+    public List<Volunteer> getVolunteerByTask(int id);
 }

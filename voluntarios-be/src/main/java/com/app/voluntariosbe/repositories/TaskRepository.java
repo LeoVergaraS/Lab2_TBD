@@ -10,4 +10,5 @@ public interface TaskRepository {
     public Task createTask(Task t);
     public Task updateTask(Task t);
     public void deleteTaskById(int id);
+    public List<Task> getTaskByEmergency(int id);
 }
