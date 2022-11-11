@@ -109,4 +109,17 @@ public class Status_TaskRepositoryImp implements Status_TaskRepository{
         }
     }
 
+    @Override
+    public Status_Task getEmergencyState(int id) {
+        String sql = "SELECT  es.* from emergencia em, estado_tarea es where em.id=:id and em.estado=es.id";
+        Connection conn = sql2o.open();
+        try (conn) {
+            return conn.createQuery(sql).addParameter("id", id).executeAndFetchFirst(Status_Task.class);
+        }catch(Exception e){
+            System.out.println(e);
+            return null;
+        }finally{
+            conn.close();
+        }
+    }
 }

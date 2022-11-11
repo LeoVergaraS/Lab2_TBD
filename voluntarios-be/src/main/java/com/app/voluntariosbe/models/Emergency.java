@@ -11,9 +11,10 @@ public class Emergency {
     private Integer id_institucion;
     private double longitud;
     private double latitud;
+    private Integer estado;
 
     //Constructor
-    public Emergency(Integer id, String nombre, String descrip, Date finicio, Date ffin, Integer id_institucion, double longitud, double latitud) {
+    public Emergency(Integer id, String nombre, String descrip, Date finicio, Date ffin, Integer id_institucion, double longitud, double latitud, Integer estado) {
         this.id = id;
         this.nombre = nombre;
         this.descrip = descrip;
@@ -22,6 +23,7 @@ public class Emergency {
         this.id_institucion = id_institucion;
         this.longitud = longitud;
         this.latitud = latitud;
+        this.estado = estado;
     }
 
     //Getters
@@ -56,6 +58,10 @@ public class Emergency {
     public double getLongitud() {
         return longitud;
     }
+    public Integer getEstado() {
+        return estado;
+    }
+
     //Setters
     public void setId(Integer id) {
         this.id = id;
@@ -87,5 +93,9 @@ public class Emergency {
 
     public void setLatitud(double latitud) {
         this.latitud = latitud;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }
