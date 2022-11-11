@@ -118,7 +118,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
 
     @Override
     public List<Volunteer> getVolunteerByEmergency(int id) {
-        String sql = "SELECT vo.id, vo.nombre, vo.fnacimiento, st_x(st_astext(vo.geom)) AS longitud, st_y(st_astext(vo.geom)) AS latitud FROM voluntario vo, (SELECT DISTINCT ra.id_voluntario FROM tarea ta, ranking ra WHERE ta.id_emergencia = 1 AND ra.id_tarea = ta.id) t1 WHERE t1.id_voluntario = vo.id";
+        String sql = "SELECT vo.id, vo.nombre, vo.fnacimiento, st_x(st_astext(vo.geom)) AS longitud, st_y(st_astext(vo.geom)) AS latitud FROM voluntario vo, (SELECT DISTINCT ra.id_voluntario FROM tarea ta, ranking ra WHERE ta.id_emergencia = :id AND ra.id_tarea = ta.id) t1 WHERE t1.id_voluntario = vo.id";
         Connection conn = sql2o.open();
         try (conn) {
             return conn.createQuery(sql).addParameter("id", id).executeAndFetch(Volunteer.class);

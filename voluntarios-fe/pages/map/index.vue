@@ -10,10 +10,10 @@
         required
       >
       </v-select>
-      <div>{{point}} 
-        <input type="text" v-model="name" placeholder="nombre" />
-        <button type="button" @click="createPoint">Crear</button>
-      </div>
+      <v-btn color="blue darken-1" text @click="mostrarPuntos">
+        Mostrar Ubicaciones
+      </v-btn>
+
       <div>{{message}}</div>
       <div id="mapid"></div>
     </div>
@@ -35,8 +35,8 @@
     name: 'map',
     data:function(){
       return{
-        latitude:null, //Datos de nuevo punto
-        longitude:null,
+        latitud:null, //Datos de nuevo punto
+        longitud:null,
         name:'',
         points:[], //colección de puntos cargados de la BD
         message:'', 
@@ -47,9 +47,9 @@
     },
     computed:{
       point(){ // función computada para representar el punto seleccionado
-        if(this.latitude && this.longitude){
-          let lat = this.latitude.toFixed(3);
-          let lon = this.longitude.toFixed(3);
+        if(this.latitud && this.longitud){
+          let lat = this.latitud.toFixed(3);
+          let lon = this.longitud.toFixed(3);
           return `(${lat}, ${lon})`;
         }else{
           return '';
@@ -57,6 +57,15 @@
       }
     },
     methods:{
+      mostrarPuntos(){
+        if(this.id_emergencia == -1){
+          console.log('Debe seleccionar una emergencia')
+        }else{
+          this.clearMarkers()
+          //Se agregan los puntos mediante llamada al servicio
+          this.getPoints(this.mymap);
+        }
+      },
       async getEmergencies(){
         const url = "http://localhost:8090/emergencies";
         await axios.get(url)
@@ -77,16 +86,19 @@
       async getPoints(map){
         try {
           //se llama el servicio 
-          let response = await axios.get('http://localhost:8090/volunteers');
+          const url = 'http://localhost:8090/volunteers/emergency/' + String(this.id_emergencia);
+          let response = await axios.get( url );
+          console.log("id emergencia: " + this.id_emergencia)
+          console.log(response.data)
           let dataPoints = response.data;
           //Se itera por los puntos
           dataPoints.forEach(point => {
-  
+            let info = point.nombre + ", " + point.fnacimiento + ", " + point.longitud + ", " + point.latitud
             //Se crea un marcador por cada punto
-            let p =[point.latitude, point.longitude]
+            let p =[point.latitud, point.longitud]
             let marker = L.marker(p, {icon:myIcon}) //se define el ícono del marcador
-            .bindPopup(point.name) //Se agrega un popup con el nombre
-            
+            .bindPopup(info); //Se agrega un popup con el nombre
+
             //Se agrega a la lista
             this.points.push(marker);
           });
@@ -113,13 +125,10 @@
       }).addTo(this.mymap);
   
       //Evento click obtiene lat y long actual
-      this.mymap.on('click', function(e) {
-        _this.latitude = e.latlng.lat;
-        _this.longitude =e.latlng.lng;
-      });
-  
-      //Se agregan los puntos mediante llamada al servicio
-      this.getPoints(this.mymap);
+      /* this.mymap.on('click', function(e) {
+        _this.latitud = e.latlng.lat;
+        _this.longitud =e.latlng.lng;
+      }); */
     }
   }
   </script>
@@ -128,6 +137,8 @@
     display:flex;
     flex-direction: column;
     align-items: center;
+    position:relative;
+    z-index: 0;
   }
   /* Estilos necesarios para definir el objeto de mapa */
   #mapid { 
