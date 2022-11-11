@@ -88,8 +88,6 @@
           //se llama el servicio 
           const url = 'http://localhost:8090/volunteers/emergency/' + String(this.id_emergencia);
           let response = await axios.get( url );
-          console.log("id emergencia: " + this.id_emergencia)
-          console.log(response.data)
           let dataPoints = response.data;
           //Se itera por los puntos
           dataPoints.forEach(point => {
