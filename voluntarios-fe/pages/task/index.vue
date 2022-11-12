@@ -139,7 +139,7 @@
               <v-btn color="blue darken-1" text @click="close">
                 Cancelar
               </v-btn>
-              <v-btn color="blue darken-1" text href="#" @click="save">
+              <v-btn color="blue darken-1" text href="/task" @click="save">
                 Guardar
               </v-btn>
             </v-card-actions>
@@ -170,7 +170,7 @@
     <!-- Botón de editar y de eliminar -->
     <template v-slot:[`item.actions`]="{ item }">
       <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-      <v-btn icon href="/task">
+      <v-btn icon>
         <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
       </v-btn>
     </template>
@@ -259,7 +259,6 @@ export default {
     formTitle() {
       this.max = this.editedItem.cant_vol_requeridos;
       this.getRequirements();
-      console.log(this.nuevosRequerimientos)
       return this.editedIndex === -1 ? "Nueva tarea" : "Editar tarea";
     },
   },
@@ -384,6 +383,7 @@ export default {
     /* Hace la conexión del delete con axios */
     async deleteTask(et) {
       const url = "http://localhost:8090/tasks/" + String(et.id);
+      console.log(et)
       await axios
         .delete(url)
         .then((response) => {
@@ -396,8 +396,9 @@ export default {
 
     /* Se confirma el delete de un item */
     deleteItemConfirm() {
-      this.tareas.splice(this.editedIndex, 1);
-      this.closeDelete();
+      this.deleteTask(this.editedItem)
+      this.closeDelete()
+      window.location.href = "/task"
     },
 
     /* Se cierra el dialogo de editar */
@@ -451,7 +452,7 @@ export default {
         this.updateTask(this.editedItem);
         this.uploadRequirements()
       } else {
-        this.editedItem.id = this.tareas.length;
+        this.editedItem.id = this.tareas[this.tareas.length-1].id + 1;
         this.createTask(this.editedItem);
         this.uploadRequirements()
       }

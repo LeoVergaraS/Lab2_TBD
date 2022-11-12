@@ -32,7 +32,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
 
     @Override
     public List<Volunteer> getAllVolunteer() {
-        String sql = "SELECT id, nombre, fnacimiento, st_x(st_astext(geom)) AS longitud, "+
+        String sql = "SELECT id, nombre, rut, fnacimiento, st_x(st_astext(geom)) AS longitud, "+
                     "st_y(st_astext(geom)) AS latitud FROM voluntario";
         Connection conn = sql2o.open();
         try (conn) {
@@ -47,7 +47,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
 
     @Override
     public Volunteer getVolunteerById(int id) {
-        String sql = "SELECT id, nombre, fnacimiento, st_x(st_astext(geom)) AS longitud, "+
+        String sql = "SELECT id, nombre, rut, fnacimiento, st_x(st_astext(geom)) AS longitud, "+
                     "st_y(st_astext(geom)) AS latitud FROM voluntario WHERE id = :id";
         Connection conn = sql2o.open();
         try (conn) {
@@ -62,14 +62,15 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
     
     @Override
     public Volunteer createVolunteer(Volunteer v) {
-        String sql = "INSERT INTO voluntario (id, nombre, fnacimiento, geom) " +
-                "VALUES (:id, :nombre, :fnacimiento, ST_GeomFromText(:point, 4326))";
+        String sql = "INSERT INTO voluntario (id, nombre, rut, fnacimiento, geom) " +
+                "VALUES (:id, :nombre, :rut, :fnacimiento, ST_GeomFromText(:point, 4326))";
         String point = "POINT(" + v.getLongitud() + " " + v.getLatitud() + ")";
         Connection conn = sql2o.open();
         try (conn) {
             int id = (int) conn.createQuery(sql,true)
                     .addParameter("id", v.getId())
                     .addParameter("nombre", v.getNombre())
+                    .addParameter("rut", v.getRut())
                     .addParameter("fnacimiento", v.getFnacimiento())
                     .addParameter("point", point)
                     .executeUpdate()
@@ -86,7 +87,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
 
     @Override
     public Volunteer updateVolunteer(Volunteer v) {
-        String sql = "UPDATE voluntario SET nombre = :nombre, fnacimiento = :fnacimiento, "+
+        String sql = "UPDATE voluntario SET nombre = :nombre, rut= :rut, fnacimiento = :fnacimiento "+
                     "geom = ST_GeomFromText(:point, 4326)) WHERE id = :id";
         String point = "POINT(" + v.getLongitud() + " " + v.getLatitud() + ")";
         Connection conn = sql2o.open();
@@ -95,6 +96,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
                     .addParameter("id", v.getId())
                     .addParameter("nombre", v.getNombre())
                     .addParameter("fnacimiento", v.getFnacimiento())
+                    .addParameter("rut", v.getRut())
                     .addParameter("point", point)
                     .executeUpdate();
             return v;
@@ -123,7 +125,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
 
     @Override
     public List<Volunteer> getVolunteerByEmergency(int id) {
-        String sql = "SELECT vo.id, vo.nombre, vo.fnacimiento, st_x(st_astext(vo.geom)) "+
+        String sql = "SELECT vo.id, vo.nombre,vo.rut, vo.fnacimiento, st_x(st_astext(vo.geom)) "+
                     "AS longitud, st_y(st_astext(vo.geom)) AS latitud "+
                     "FROM voluntario vo, (SELECT DISTINCT ra.id_voluntario FROM tarea ta, ranking ra "+
                     "WHERE ta.id_emergencia = :id AND ra.id_tarea = ta.id) t1 "+
@@ -141,7 +143,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
     @Override
     // volunteers from task id
     public List<Volunteer_Query> getVolunteerByTask(int id) {
-        String sql = "SELECT DISTINCT vo.id, vo.nombre, ra.flg_participa "+
+        String sql = "SELECT DISTINCT vo.id, vo.rut, vo.nombre, ra.flg_participa "+
                     "FROM tarea ta, ranking ra, voluntario vo "+ 
                     "WHERE ta.id= :id AND ra.id_tarea=ta.id AND ra.id_voluntario=vo.id "+ 
                     "ORDER BY flg_participa ASC, nombre ASC;";

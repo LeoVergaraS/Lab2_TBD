@@ -73,7 +73,7 @@ export default {
                 text: "Rut",
                 align: "start",
                 sortable: false,
-                value: "id",
+                value: "rut",
             },
             { text: "Nombre", value: "nombre" },
             { text: "Participa", value: "flg_participa" },

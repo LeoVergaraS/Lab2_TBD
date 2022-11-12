@@ -6,6 +6,7 @@ public class Volunteer {
     private Integer id;
     private String nombre;
     private Date fnacimiento;
+    private String rut;
     private double longitud;
     private double latitud;
 
@@ -38,6 +39,10 @@ public class Volunteer {
     public double getLongitud() {
         return longitud;
     }
+
+    public String getRut() {
+        return rut;
+    }
     //Setters
     public void setId(Integer id) {
         this.id = id;
@@ -57,5 +62,9 @@ public class Volunteer {
 
     public void setLatitud(double latitud) {
         this.latitud = latitud;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
     }
 }
