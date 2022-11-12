@@ -143,7 +143,7 @@ public class VolunteerRepositoryImp  implements VolunteerRepository{
     @Override
     // volunteers from task id
     public List<Volunteer_Query> getVolunteerByTask(int id) {
-        String sql = "SELECT DISTINCT vo.id, vo.rut, vo.nombre, ra.flg_participa "+
+        String sql = "SELECT DISTINCT vo.id, vo.nombre, vo.rut, ra.flg_participa "+
                     "FROM tarea ta, ranking ra, voluntario vo "+ 
                     "WHERE ta.id= :id AND ra.id_tarea=ta.id AND ra.id_voluntario=vo.id "+ 
                     "ORDER BY flg_participa ASC, nombre ASC;";

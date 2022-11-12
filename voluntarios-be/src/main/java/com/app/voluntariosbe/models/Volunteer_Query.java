@@ -3,6 +3,7 @@ package com.app.voluntariosbe.models;
 public class Volunteer_Query {
     private Integer id;
     private String nombre;
+    private String rut;
     private Integer flg_participa;
 
     //Constructor
@@ -21,6 +22,10 @@ public class Volunteer_Query {
         return nombre;
     }
 
+    public String getRut() {
+        return rut;
+    }
+
     public Integer getFlg_participa() {
         return flg_participa;
     }
@@ -34,6 +39,9 @@ public class Volunteer_Query {
         this.nombre = nombre;
     }
 
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
     public void setFlg_participa(Integer flg_participa) {
         this.flg_participa = flg_participa;
     }

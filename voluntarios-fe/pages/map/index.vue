@@ -91,7 +91,7 @@
           let dataPoints = response.data;
           //Se itera por los puntos
           dataPoints.forEach(point => {
-            let info = point.nombre + ", " + point.fnacimiento + ", " + point.longitud + ", " + point.latitud
+            let info = point.nombre + ", " + point.fnacimiento + ", " +point.rut+ ", "+ point.longitud + ", " + point.latitud
             //Se crea un marcador por cada punto
             let p =[point.latitud, point.longitud]
             let marker = L.marker(p, {icon:myIcon}) //se define el ícono del marcador
