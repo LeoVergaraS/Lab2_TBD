@@ -1,6 +1,6 @@
 <template>
     <div class="map">
-      <h1>Ejemplo Mapas</h1>
+      <h1>Mapa emergencias</h1>
       <v-select
         v-model="id_emergencia"
         :items="emergencias"
@@ -59,7 +59,7 @@
     methods:{
       mostrarPuntos(){
         if(this.id_emergencia == -1){
-          console.log('Debe seleccionar una emergencia')
+          this.message = "Debe seleccionar una emergencia";
         }else{
           this.clearMarkers()
           //Se agregan los puntos mediante llamada al servicio

@@ -84,8 +84,8 @@ export default {
         estadosTareas: []
     }),
 
-    async mounted() {
-        this.getStatusTask()
+    async created() {
+        await this.getStatusTask()
         await this.getEmergencies()
     },
 
@@ -121,9 +121,9 @@ export default {
                     console.log(error)
                 })
         },
-        getStatusTask() {
+        async getStatusTask() {
             const url = "http://localhost:8090/status_tasks";
-            axios
+            await axios
                 .get(url)
                 .then((response) => {
                     this.estadosTareas = response.data.sort((a, b) => a.id - b.id);

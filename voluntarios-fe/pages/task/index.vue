@@ -275,15 +275,14 @@ export default {
 
   /* Mounted ejecuta las lineas al ingresar a la página, en este caso obtiene 
     los datos */
-  async mounted() {
-    this.getStatusTask();
+  async created() {
+    await this.getStatusTask();
     await this.getEmergencies();
-    this.getTask();
+    await this.getTask();
   },
 
   /* Se definen los métodos */
   methods: {
-
     uploadRequirements(){
       for(let i=0;i<this.nuevosRequerimientos.length;i++){
         this.task_skill.id_emehab = this.nuevosRequerimientos[i]
@@ -306,9 +305,9 @@ export default {
     },
 
     /* Obtiene las tareas */
-    getTask() {
+    async getTask() {
       const url = "http://localhost:8090/tasks";
-      axios
+      await axios
         .get(url)
         .then((response) => {
           this.tareas = response.data.sort((a, b) => a.id - b.id);
@@ -318,11 +317,11 @@ export default {
         });
     },
 
-    getRequirements() {
+    async getRequirements() {
       const url = 
         "http://localhost:8090/skills/emergencies/" +
         this.editedItem.id_emergencia;
-      axios
+      await axios
         .get(url)
         .then((response) => {
           this.requerimientos = response.data.sort((a, b) => a.id - b.id);
@@ -332,9 +331,9 @@ export default {
         });
     },
     /* Obtiene los estados de las tareas */
-    getStatusTask() {
+    async getStatusTask() {
       const url = "http://localhost:8090/status_tasks";
-      axios
+      await axios
         .get(url)
         .then((response) => {
           this.estados = response.data.sort((a, b) => a.id - b.id);
